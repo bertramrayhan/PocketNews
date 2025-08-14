@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">PocketNews</string>
+    <string name="appName">PocketNews</string>
+    <string name="business">Business</string>
+    <string name="sport">Sport</string>
+    <string name="technology">Technology</string>
+    <string name="judulBerita">Judul Berita</string>
+    <string name="sumberBerita">Sumber Berita</string>
+    <string name="tanggalPublikasi">12 Februari 2024</string>
 </resources>
