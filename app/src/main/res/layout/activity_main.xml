@@ -42,6 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu"
         app:labelVisibilityMode="labeled"
+        app:itemActiveIndicatorStyle="@null"
         app:itemIconTint="@color/bottom_nav_item_tint"
         app:itemTextColor="@color/bottom_nav_item_tint"/>
 
