@@ -32,6 +32,7 @@
             android:layout_marginHorizontal="11dp"
             android:layout_marginVertical="10dp"
             android:text="@string/judulBerita"
+            android:hyphenationFrequency="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newsImage" />
