@@ -71,7 +71,7 @@ public class TechnologyNewsFragment extends Fragment {
         newsAdapter = new NewsAdapter(new ArrayList<>());
         newsRecyclerView.setAdapter(newsAdapter);
 
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(this.requireActivity()).get(MainViewModel.class);
         mainViewModel.fetchNews(CATEGORY);
 
         mainViewModel.getArticlesLiveData().observe(getViewLifecycleOwner(), new Observer<List<Article>>() {

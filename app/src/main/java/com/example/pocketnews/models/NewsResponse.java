@@ -13,6 +13,5 @@ public class NewsResponse {
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
-        Log.d("NewsResponse", articles.toString());
     }
 }

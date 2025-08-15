@@ -19,8 +19,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
-    private final String COUNTRY = "us";
-
     private MutableLiveData<List<Article>> articlesLiveData = new MutableLiveData<>();
 
     public LiveData<List<Article>> getArticlesLiveData() {
@@ -29,7 +27,7 @@ public class MainViewModel extends ViewModel {
 
     public void fetchNews(String category) {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<NewsResponse> newsResponseCall = apiService.getNews(COUNTRY, category, Rahasia.API_KEY);
+        Call<NewsResponse> newsResponseCall = apiService.getNews(category, Rahasia.API_KEY);
 
         newsResponseCall.enqueue(new Callback<NewsResponse>() {
             @Override
