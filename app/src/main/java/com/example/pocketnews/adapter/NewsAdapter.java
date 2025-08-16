@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.example.pocketnews.DetailActivity;
 import com.example.pocketnews.R;
 import com.example.pocketnews.models.Article;
-import com.example.pocketnews.viewModels.MainViewModel;
 
 import java.util.List;
 

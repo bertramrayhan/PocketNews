@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +22,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 public class DetailActivity extends AppCompatActivity {
 
     private ShapeableImageView newsImage;
+    private ImageView backBtn;
     private TextView judulBerita, sumberBerita, tanggalPublikasi, newsDescription, readMoreBtn;
 
     @Override
@@ -52,9 +54,11 @@ public class DetailActivity extends AppCompatActivity {
         sumberBerita.setText(article.getSource().getName());
         tanggalPublikasi.setText(article.getFormattedPublishedAt());
         String content = article.getContent();
-        int charIndex = content.lastIndexOf("[+");
-        if (charIndex != -1) {
-            content = content.substring(0, charIndex).trim() + "...";
+        if(content != null){
+            int charIndex = content.lastIndexOf("[+");
+            if (charIndex != -1) {
+                content = content.substring(0, charIndex).trim() + "...";
+            }
         }
         newsDescription.setText(content);
 
@@ -68,5 +72,8 @@ public class DetailActivity extends AppCompatActivity {
             CustomTabsIntent customTabsIntent = builder.build();
             customTabsIntent.launchUrl(this, Uri.parse(url));
         });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v -> finish());
     }
 }
