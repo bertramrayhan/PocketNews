@@ -23,6 +23,11 @@ import retrofit2.Response;
 public class MainViewModel extends ViewModel {
     private Map<String, CategoryCache> categoryCacheMap = new HashMap<>();
     private static final long CACHE_EXPIRATION_TIME = 30 * 60 * 1000;
+    private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+
+    public LiveData<Boolean> getIsLoading() {
+        return isLoading;
+    }
 
     public LiveData<List<Article>> getArticlesLiveData(String category) {
         if(!categoryCacheMap.containsKey(category)){
@@ -32,6 +37,7 @@ public class MainViewModel extends ViewModel {
         CategoryCache cache = categoryCacheMap.get(category);
         long currentTime = System.currentTimeMillis();
         if(currentTime - cache.getLastFetchTimestamp() > CACHE_EXPIRATION_TIME){
+            isLoading.postValue(true);
             fetchNews(cache.getMutableArticlesLiveData(), category);
             cache.setLastFetchTimestamp(currentTime);
         }
@@ -61,11 +67,13 @@ public class MainViewModel extends ViewModel {
                         Log.e("API_ERROR_PARSE", "Gagal parsing error body", e);
                     }
                 }
+                isLoading.postValue(false);
             }
 
             @Override
             public void onFailure(Call<NewsResponse> call, Throwable t) {
                 Log.e("API_FAILURE", "Request gagal total.", t);
+                isLoading.postValue(false);
             }
         });
     }
