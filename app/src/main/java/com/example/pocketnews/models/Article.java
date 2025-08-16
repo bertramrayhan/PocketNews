@@ -2,15 +2,16 @@ package com.example.pocketnews.models;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class Article {
+public class Article implements Serializable {
     private Source source;
-    private String urlToImage, title, publishedAt, content;
+    private String urlToImage, title, publishedAt, content, url;
 
     public Source getSource() {
         return source;
@@ -69,5 +70,13 @@ public class Article {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -68,10 +68,10 @@ public class TechnologyNewsFragment extends Fragment {
         newsRecyclerView = view.findViewById(R.id.newsRecyclerView);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this.requireContext()));
 
+        mainViewModel = new ViewModelProvider(this.requireActivity()).get(MainViewModel.class);
+
         newsAdapter = new NewsAdapter(new ArrayList<>());
         newsRecyclerView.setAdapter(newsAdapter);
-
-        mainViewModel = new ViewModelProvider(this.requireActivity()).get(MainViewModel.class);
 
         mainViewModel.getArticlesLiveData(CATEGORY).observe(getViewLifecycleOwner(), new Observer<List<Article>>() {
             @Override

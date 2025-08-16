@@ -1,6 +1,7 @@
 package com.example.pocketnews.adapter;
 
-import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pocketnews.DetailActivity;
 import com.example.pocketnews.R;
 import com.example.pocketnews.models.Article;
+import com.example.pocketnews.viewModels.MainViewModel;
 
 import java.util.List;
 
@@ -47,6 +50,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.judulBerita.setText(currentArticle.getTitle());
         holder.sumberBerita.setText(currentArticle.getSource().getName());
         holder.tanggalPublikasi.setText(currentArticle.getFormattedPublishedAt());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("ARTICLE", currentArticle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

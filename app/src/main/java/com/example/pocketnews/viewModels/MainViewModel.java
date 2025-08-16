@@ -32,11 +32,11 @@ public class MainViewModel extends ViewModel {
         CategoryCache cache = categoryCacheMap.get(category);
         long currentTime = System.currentTimeMillis();
         if(currentTime - cache.getLastFetchTimestamp() > CACHE_EXPIRATION_TIME){
-            fetchNews(cache.articlesLiveData, category);
+            fetchNews(cache.getMutableArticlesLiveData(), category);
             cache.setLastFetchTimestamp(currentTime);
         }
 
-        return cache.articlesLiveData;
+        return cache.getArticlesLiveData();
     }
 
     public void fetchNews(MutableLiveData<List<Article>> articlesLiveData, String category) {
@@ -71,7 +71,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public class CategoryCache{
-        public MutableLiveData<List<Article>> articlesLiveData;
+        private MutableLiveData<List<Article>> articlesLiveData;
         private long lastFetchTimestamp;
 
         public CategoryCache(){
@@ -85,6 +85,14 @@ public class MainViewModel extends ViewModel {
 
         public void setLastFetchTimestamp(long lastFetchTimestamp) {
             this.lastFetchTimestamp = lastFetchTimestamp;
+        }
+
+        public MutableLiveData<List<Article>> getMutableArticlesLiveData() {
+            return articlesLiveData;
+        }
+
+        public LiveData<List<Article>> getArticlesLiveData() {
+            return articlesLiveData;
         }
     }
 }
